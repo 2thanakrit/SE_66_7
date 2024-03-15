@@ -37,11 +37,14 @@
                         <dd class="col-sm-9"><a href="{{ url('/download',$detail->file) }}"> Download </a></dd>
                         <dt></dt>
                         
-                        
+                        <dt class="col-sm-3">ผู้อนุมัติ</dt>
+                        <dd class="col-sm-9">{{ $detail->approver->firstname . ' ' . $detail->approver->lastname }}</dd>
 
                         <dt class="col-sm-3 mt-2">วัน/เวลาที่กรอก</dt>
                         <dd class="col-sm-9 mt-2">{{ $detail->date }}</dd>
 
+                        <dt class="col-sm-3 mt-2">สถานะ</dt>
+                        <dd class="col-sm-9">{{ $detail->status }}</dd>
                       
                       </dl>
                       <a href="/leaveMain" class="btn btn-danger ">Back</a>
