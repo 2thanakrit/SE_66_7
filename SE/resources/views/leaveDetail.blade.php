@@ -32,9 +32,11 @@
                             <dd class="col-sm-9">{{ $detail->detail }}</dd>
                           </dl>
                         </dd>
-
+                      @if($detail->file)
                         <dt class="col-sm-3 ">File (เพิ่มเติม)</dt>
-                        <dd class="col-sm-9"><a href="{{ url('/download',$detail->file) }}"> Download </a></dd>
+                        
+                        <dd class="col-sm-9"><a href="{{ url('/'.$detail->file) }} " class="btn btn-outline-primary btn-sm"> Open </a></dd>
+                        @endif
                         <dt></dt>
                         
                         <dt class="col-sm-3">ผู้อนุมัติ</dt>
@@ -44,7 +46,7 @@
                         <dd class="col-sm-9 mt-2">{{ $detail->date }}</dd>
 
                         <dt class="col-sm-3 mt-2">สถานะ</dt>
-                        <dd class="col-sm-9">{{ $detail->status }}</dd>
+                        <dd class="col-sm-9 mt-2">{{ $detail->status }}</dd>
                       
                       </dl>
                       <a href="/leaveMain" class="btn btn-danger ">Back</a>

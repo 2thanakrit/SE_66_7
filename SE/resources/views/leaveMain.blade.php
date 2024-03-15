@@ -25,7 +25,7 @@
                                             <th scope="col">Type</th>
                                             <th scope="col">Start Date</th>
                                             <th scope="col">End Date</th>
-                                            <th scope="col">Date</th>
+
                                             <th scope="col">Status</th>
                                             <th scope="col">Approver</th>
                                             <th scope="col">Detail</th>
@@ -40,7 +40,6 @@
                                                 <td>{{ $leave->typeLeave->name }}</td>
                                                 <td>{{ $leave->firstDate }}</td>
                                                 <td>{{ $leave->endDate }}</td>
-                                                <td>{{ $leave->date }}</td>
                                                 <td>{{ $leave->status }}</td>
                                                 <td>{{ $leave->approver->firstname . ' ' . $leave->approver->lastname }}
                                                 </td>

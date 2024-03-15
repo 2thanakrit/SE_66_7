@@ -21,6 +21,23 @@ class UserController extends Controller
         $users = User::all();
         return view('userMain',compact('users'));
     }
+
+    function create(Request $request)
+{
+    $user = User::create([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'password' => Hash::make($request->input('password')),
+    ]);
+
+    // กำหนดบทบาท
+    $roles = $request->input('roles');
+    if ($roles) {
+        $user->roles()->sync($roles);
+    }
+
+    return redirect()->route('users.index')->with('success', 'User created successfully');
+}
     
 
 }
