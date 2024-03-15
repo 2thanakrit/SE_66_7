@@ -1,54 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SE Group 7</title>
+    <link href="{{ asset('assets/css/login.css') }}" rel="stylesheet">
 </head>
 
 <body>
-    <div class="row justufy-content-center mt-5">
-        <div class="col-lg-4">
-            <div class="card">
-                <div class="card-header">
-                    <h1 class="card-title">Login</h1>
-                </div>
-                <div class="card-body">
+    <div class="container">
+        <div class="leftContainer">
+            <div class="logoContainer">
+                <img src="assets/images/ku.png" alt="Logo" class="logo">
+            </div>
+            <div class="contentContainer">
+                <h4>Nice to see you</h4>
+                <h1>Welcome to Online Leave System</h1>
+                <hr>
+                <p>This is a project in the course software engineering.</p>
+                <p>We are very determined to do it. Hope you like it and thank you.</p>
+            </div>
+        </div>
+        <div class="rightContainer">
+            <div class="login-container">
+                <div class="login-form">
+                    <h1>Login Account</h1>
+                    <p>For government teachers in Kasetsart schools</p>
                     @if (Session::has('error'))
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-danger" role="alert" style="background-color: #f44336; color: white; padding: 10px;" >
                             {{ Session::get('error') }}
                         </div>
                     @endif
                     <form action="{{ route('login') }}" method="POST">
                         @csrf
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
                             <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
+                        <div class="form-group">
+                            <label for="password">Password</label>
                             <input type="password" name="password" class="form-control" id="password" required>
                         </div>
-                        <div class="mb-3">
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            </div>
-                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
                     </form>
                 </div>
             </div>
+        
         </div>
-
+    </div>
+    
 </body>
 
 </html>
