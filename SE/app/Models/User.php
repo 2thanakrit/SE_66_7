@@ -22,6 +22,7 @@ class User extends Authenticatable
         'lastname',
         'email',
         'password',
+        's_id',
     ];
 
     /**
@@ -47,5 +48,14 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+    public function subCategory()
+    {
+        return $this->belongsTo(SubCategory::class,'s_id','id');
+    }
+
+    public function hasRole($roleID)
+    {
+        return $this->roles()->where('role_id', $roleID)->exists();
     }
 }

@@ -15,6 +15,11 @@ use App\Http\Controllers\HomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::middleware(['guest'])->group(function () {
+
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,10 +27,18 @@ Route::get('/', function () {
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
+
+
+Route::middleware(['auth'])->group(function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');    
 Route::delete('/logout',[AuthController::class, 'logout'])->name('logout');
 
+
 Route::get('/leaveMain', [App\Http\Controllers\LeaveOfAbsenseController::class, 'index'])->name('leaveMain');
+Route::get('/leaveMain/Create', [App\Http\Controllers\LeaveOfAbsenseController::class, 'create'])->name('leaveCreate');
+Route::post('/leaveMain/Create', [App\Http\Controllers\LeaveOfAbsenseController::class, 'store'])->name('leaveStore');
+Route::get('/leaveMain/search', [App\Http\Controllers\LeaveOfAbsenseController::class, 'search'])->name('searchLeave');
+Route::get('/leaveDetail/{id}', [App\Http\Controllers\LeaveOfAbsenseController::class, 'detail'])->name('leaveDetail');
+Route::get('/download{file}', [App\Http\Controllers\LeaveOfAbsenseController::class, 'download'])->name('leaveDownload');
+});

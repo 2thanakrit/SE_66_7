@@ -19,7 +19,9 @@ class leaveOfAbsence extends Model
         'date',
         'status',
         'u_approve',
+        'acknowledge',
     ];
+    public $timestamps = false;
 
     public function user()
     {

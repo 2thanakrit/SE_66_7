@@ -17,5 +17,10 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+    function index(){
+        $users = User::all();
+        return view('userMain',compact('users'));
+    }
     
+
 }
