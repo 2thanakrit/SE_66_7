@@ -20,6 +20,8 @@ Route::middleware(['guest'])->group(function () {
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
+
+
 });
 
 Route::get('/', function () {
@@ -37,14 +39,17 @@ Route::delete('/logout',[AuthController::class, 'logout'])->name('logout');
 
 
 Route::post('/user/create', [UserController::class, 'createUserWithRoles'])->name('createWithRoles');
+Route::get('/userMain', [UserController::class, 'AddAllUser'])->name('userMain');
+Route::get('/userMain/search', [UserController::class, ''])->name('searchUser ');
+
 
 Route::get('/leaveMain', [App\Http\Controllers\LeaveOfAbsenseController::class, 'index'])->name('leaveMain');
 Route::get('/leaveMain/Create', [App\Http\Controllers\LeaveOfAbsenseController::class, 'create'])->name('leaveCreate');
 Route::post('/leaveMain/Create', [App\Http\Controllers\LeaveOfAbsenseController::class, 'store'])->name('leaveStore');
 Route::get('/leaveMain/search', [App\Http\Controllers\LeaveOfAbsenseController::class, 'search'])->name('searchLeave');
 Route::get('/leaveDetail/{id}', [App\Http\Controllers\LeaveOfAbsenseController::class, 'detail'])->name('leaveDetail');
-Route::get('/{file}', [App\Http\Controllers\LeaveOfAbsenseController::class, 'download'])->name('leaveDownload');
+Route::get('/leaveDetail/{file}', [App\Http\Controllers\LeaveOfAbsenseController::class, 'download'])->name('leaveDownload');
 
-Route::get('Acknowledge', [App\Http\Controllers\AcknowledgeController::class, 'index']);
-Route::get('/accepted/{id}', [App\Http\Controllers\AcknowledgeController::class, 'accepted']);
+Route::get('/Acknowledge', [App\Http\Controllers\AcknowledgeController::class, 'index']);
+Route::get('/Accepted/{id}', [App\Http\Controllers\AcknowledgeController::class, 'accepted']);
 });
