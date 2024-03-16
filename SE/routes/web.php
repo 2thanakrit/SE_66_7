@@ -44,4 +44,7 @@ Route::post('/leaveMain/Create', [App\Http\Controllers\LeaveOfAbsenseController:
 Route::get('/leaveMain/search', [App\Http\Controllers\LeaveOfAbsenseController::class, 'search'])->name('searchLeave');
 Route::get('/leaveDetail/{id}', [App\Http\Controllers\LeaveOfAbsenseController::class, 'detail'])->name('leaveDetail');
 Route::get('/{file}', [App\Http\Controllers\LeaveOfAbsenseController::class, 'download'])->name('leaveDownload');
+
+Route::get('Acknowledge', [App\Http\Controllers\AcknowledgeController::class, 'index']);
+Route::get('/accepted/{id}', [App\Http\Controllers\AcknowledgeController::class, 'accepted']);
 });
