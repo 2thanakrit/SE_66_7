@@ -19,7 +19,7 @@
                 <h4>Nice to see you</h4>
                 <h1>Welcome to Online Leave System</h1>
                 <hr>
-                <p>This is a project in the course software engineering.</p>
+                <p>This is a project in the course software engineering</p>
                 <p>We are very determined to do it. Hope you like it and thank you.</p>
             </div>
         </div>
