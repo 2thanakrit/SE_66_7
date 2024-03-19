@@ -21,7 +21,10 @@ Route::middleware(['guest'])->group(function () {
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
 
-
+//layout
+Route::get('/layoutV2', function () {
+    return view('layoutV2');
+});
 });
 
 Route::get('/', function () {
