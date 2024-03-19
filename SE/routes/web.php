@@ -36,7 +36,7 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
 
 
-Route::middleware(['auth','role:ครู'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');    
 Route::delete('/logout',[AuthController::class, 'logout'])->name('logout');
