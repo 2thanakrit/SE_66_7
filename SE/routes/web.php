@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,12 +36,12 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','role:ครู'])->group(function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');    
 Route::delete('/logout',[AuthController::class, 'logout'])->name('logout');
 
-Route::get('/user/create', [UserController::class, 'indexCreate'])->name('createUser');
+
 Route::get('/user/edit/{id}', [UserController::class, 'indexEdit'])->name('userEdit');
 Route::post('/user/create', [UserController::class, 'userStore'])->name('userStore');
 Route::put('/user/update/{id}', [UserController::class, 'userUpdate'])->name('userUpdate');
@@ -58,4 +59,10 @@ Route::get('/leaveDetail/{file}', [App\Http\Controllers\LeaveOfAbsenseController
 
 Route::get('/Acknowledge', [App\Http\Controllers\AcknowledgeController::class, 'index']);
 Route::get('/Accepted/{id}', [App\Http\Controllers\AcknowledgeController::class, 'accepted']);
+
+Route::middleware(['auth', 'role:ผู้ดูแลระบบ'])->group(function () {
+    // Your routes here
+    Route::get('/user/create', [UserController::class, 'indexCreate'])->name('createUser');
+});
+
 });
