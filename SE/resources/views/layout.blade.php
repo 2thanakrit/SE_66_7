@@ -58,7 +58,7 @@
         <div class="sidebar">
             <a href="#me">ปฎิทิน</a>
             <a href="{{ route('leaveMain') }}">ลงใบลา</a>
-            <a href="#me">จัดการผู้ใช้งาน</a>
+            <a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a>
             <a href="#me">จัดการหมวดวิชา</a>
             <a href="#me">ประวัติการลาทั้งหมด</a>
             <a href="#me">ประเภทการลา</a>
@@ -85,7 +85,7 @@
             <a href="#me">ข้อมูลการลา</a>
             <a href="#me">ประวัติการเข้างาน</a>
             @adminRole
-            <a href="#me">จัดการผู้ใช้งาน</a>
+            <a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a>
             <a href="#me">จัดการหมวดวิชา</a>
             <a href="#me">ประเภทการลา</a>   
             @endadminRole
@@ -101,7 +101,7 @@
             <a href="#me">ข้อมูลการลา</a>
             <a href="#me">ประวัติการเข้างาน</a>
             @adminRole
-            <a href="#me">จัดการผู้ใช้งาน</a>
+            <a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a>
             <a href="#me">จัดการหมวดวิชา</a>   
             @endadminRole
         </div>
@@ -116,7 +116,7 @@
             <a href="#me">ข้อมูลการลา</a>
             <a href="#me">ประวัติการเข้างาน</a>
             @adminRole
-            <a href="#me">จัดการผู้ใช้งาน</a>
+            <a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a>
             <a href="#me">จัดการหมวดวิชา</a>   
             @endadminRole
 
@@ -133,7 +133,7 @@
             <a href="#me">ข้อมูลการลา</a>
             <a href="#me">ประวัติการเข้างาน</a>
             @adminRole
-            <a href="#me">จัดการผู้ใช้งาน</a>
+            <a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a>
             <a href="#me">จัดการหมวดวิชา</a>   
             @endadminRole
         </div>

@@ -37,10 +37,13 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');    
 Route::delete('/logout',[AuthController::class, 'logout'])->name('logout');
 
-
-Route::post('/user/create', [UserController::class, 'createUserWithRoles'])->name('createWithRoles');
-Route::get('/userMain', [UserController::class, 'AddAllUser'])->name('userMain');
-Route::get('/userMain/search', [UserController::class, ''])->name('searchUser ');
+Route::get('/user/create', [UserController::class, 'indexCreate'])->name('createUser');
+Route::get('/user/edit/{id}', [UserController::class, 'indexEdit'])->name('userEdit');
+Route::post('/user/create', [UserController::class, 'userStore'])->name('userStore');
+Route::put('/user/update/{id}', [UserController::class, 'userUpdate'])->name('userUpdate');
+Route::get('/userMain', [UserController::class, 'index'])->name('userMain');
+Route::get('/userMain/search', [UserController::class, 'searchUser'])->name('searchUser');
+Route::delete('/user/delete/{id}', [UserController::class, 'userDelete'])->name('userDelete');
 
 
 Route::get('/leaveMain', [App\Http\Controllers\LeaveOfAbsenseController::class, 'index'])->name('leaveMain');
