@@ -9,4 +9,5 @@ class TypeLeave extends Model
 {
     use HasFactory;
     protected $table = 'typeleaves';
+    
 }

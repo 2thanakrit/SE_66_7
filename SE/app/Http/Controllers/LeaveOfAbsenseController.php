@@ -124,23 +124,28 @@ class LeaveOfAbsenseController extends Controller
         $search = $request->get('search'); // รับค่าการค้นหาจากฟอร์ม
 
         // ดึงข้อมูลการลาโดยคำนึงถึงการค้นหา
-        $LeaveOfAbsence = leaveOfAbsence::with('user', 'typeLeave', 'approver')
-            ->where('firstDate', 'like', '%' . $search . '%')
-            ->orWhere('endDate', 'like', '%' . $search . '%')
-            ->orWhere('status', 'like', '%' . $search . '%')
-            ->orWhereHas('user', function ($query) use ($search) {
-                $query->where('firstname', 'like', '%' . $search . '%')
-                    ->orWhere('lastname', 'like', '%' . $search . '%');
-            })
-            ->orWhereHas('typeLeave', function ($query) use ($search) {
-                $query->where('name', 'like', '%' . $search . '%');
-            })
-            ->orWhereHas('approver', function ($query) use ($search) {
-                $query->where('firstname', 'like', '%' . $search . '%')
-                    ->orWhere('lastname', 'like', '%' . $search . '%');
-            })
-            ->get();
+        // $LeaveOfAbsence = leaveOfAbsence::with('user', 'typeLeave', 'approver')
+        //     ->where('firstDate', 'like', '%' . $search . '%')
+        //     ->orWhere('endDate', 'like', '%' . $search . '%')
+        //     ->orWhere('status', 'like', '%' . $search . '%')
+        //     ->orWhereHas('user',str(auth()->user()->id))
+        //     ->orWhereHas('typeLeave', function ($query) use ($search) {
+        //         $query->where('name', 'like', '%' . $search . '%');
+        //     })
+        //     ->orWhereHas('approver', function ($query) use ($search) {
+        //         $query->where('firstname', 'like', '%' . $search . '%')
+        //             ->orWhere('lastname', 'like', '%' . $search . '%');
+        //     })
+        //     ->get();
         // ส่งข้อมูลการลาที่ค้นหาไปยัง View
-        return view('leaveMain', compact('LeaveOfAbsence'));
+        $typeLeaves = TypeLeave::all();
+        $LeaveOfAbsence=leaveOfAbsence::where('u_id', auth()->user()->id)->where('firstDate', 'like', '%' . $search . '%' )->where('u_id', auth()->user()->id)
+        ->orWhere('endDate', 'like', '%' . $search . '%')->where('u_id', auth()->user()->id)
+        ->orWhere('status', 'like', '%' . $search . '%')->where('u_id', auth()->user()->id)
+        ->orWhereHas('typeLeave', function ($query) use ($search) {
+                     $query->where('name', 'like', '%' . $search . '%')
+                           ->where('u_id', auth()->user()->id);})->get();
+        return view('leaveMain', compact('LeaveOfAbsence', 'typeLeaves'));
+    
     }
 }
