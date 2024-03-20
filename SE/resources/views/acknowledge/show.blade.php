@@ -1,5 +1,4 @@
 @extends('layout')
-<!-- section() -->
 @section('content')
     <h1 class="mb-0">Detail Page</h1>
     <hr />
@@ -37,9 +36,10 @@
     </div>
     <div class="row">
         <div class="col mb-3">
+        @if($Acknowledge->file)
             <lable class="form-lable">File</lable><br>
-            @if($Acknowledge->file)  
             <a href="{{ url('/'.$Acknowledge->file) }} " class="btn btn-outline-primary btn-sm">Open</a>
+
             @endif
         </div>
         <div class="col mb-3">

@@ -13,10 +13,11 @@
                     </div>
                 </form>
             </div>
-    </div>                                                                                                                                                                                                      
+    </div>  
+    <br>                                                                                                                                                                                                    
     @if(Session::has('success'))
         <div class="alert alert-success" role="alert">
-            {{Session::get('sucess')}}
+            {{Session::get('success')}}
         </div>
     @endif
     <table class="table table-hover mt-3">
@@ -48,9 +49,17 @@
                     <a href="{{route('ackdetail', $ack->id)}}" type="button" class="btn btn-secondary">Detail</a>
                 </td>
                 <td class="align-middle">{{$ack->acknowledge}}</td>
+                @if($ack->acknowledge == 'รับทราบ')
+                <td>
+                    <a href="{{route('ackindex')}}" class="btn btn-success">Acknowledge</a>
+                </td>
+                @else
                 <td>
                     <a href="{{route('accept', $ack->id)}}" class="btn btn-success">Acknowledge</a>
+                    
                 </td>
+                @endif
+                
             </tr>
             @endforeach
         </tbody>
