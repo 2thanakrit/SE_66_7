@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LeaveOfAbsenseController;
+use App\Http\Controllers\AcknowledgeController;
 use App\Models\User;
 
 /*
@@ -49,13 +51,12 @@ Route::get('/userMain', [UserController::class, 'index'])->name('userMain');
 Route::get('/userMain/search', [UserController::class, 'searchUser'])->name('searchUser');
 Route::delete('/user/delete/{id}', [UserController::class, 'userDelete'])->name('userDelete');
 
-
-Route::get('/leaveMain', [App\Http\Controllers\LeaveOfAbsenseController::class, 'index'])->name('leaveMain');
-Route::get('/leaveMain/Create', [App\Http\Controllers\LeaveOfAbsenseController::class, 'create'])->name('leaveCreate');
-Route::post('/leaveMain/Create', [App\Http\Controllers\LeaveOfAbsenseController::class, 'store'])->name('leaveStore');
-Route::get('/leaveMain/search', [App\Http\Controllers\LeaveOfAbsenseController::class, 'search'])->name('searchLeave');
-Route::get('/leaveDetail/{id}', [App\Http\Controllers\LeaveOfAbsenseController::class, 'detail'])->name('leaveDetail');
-Route::get('/leaveDetail/{file}', [App\Http\Controllers\LeaveOfAbsenseController::class, 'download'])->name('leaveDownload');
+Route::get('/leaveMain', [LeaveOfAbsenseController::class, 'index'])->name('leaveMain');
+Route::get('/leaveMain/Create', [LeaveOfAbsenseController::class, 'create'])->name('leaveCreate');
+Route::post('/leaveMain/Create', [LeaveOfAbsenseController::class, 'store'])->name('leaveStore');
+Route::get('/leaveMain/search', [LeaveOfAbsenseController::class, 'search'])->name('searchLeave');
+Route::get('/leaveDetail/{id}', [LeaveOfAbsenseController::class, 'detail'])->name('leaveDetail');
+Route::get('/leaveDetail/{file}', [LeaveOfAbsenseController::class, 'download'])->name('leaveDownload');
 
 Route::get('/acknowledge', [AcknowledgeController::class, 'index'])->name('ackindex');
 Route::get('/search', [AcknowledgeController::class,'search']);

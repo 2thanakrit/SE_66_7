@@ -25,7 +25,7 @@
                         <h2>John Cena</h2>
                     </div>
                     <hr>
-                    <a href="#" class = "sub-menu-link">
+                    <a href="/logout" class = "sub-menu-link">
                         <img src = "../assets/images/logout.png">
                         <p>Logout</p>
                         <span>></span>

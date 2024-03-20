@@ -4,47 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('assets/css/sider-nav.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/top-nav.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/content.css') }}">
+    <title>Website Layout</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/layoutV2.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('Title')</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+
 </head>
 
 <body>
-    <!-- The Topbar -->
-    <div class = "hero">
+    <div class="top">
         <nav class="nav">
+            <img src="../assets/images/KU copy.png" class="logo">
             <ul>
                 <li><a href="#">{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }} </a></li>
             </ul>
-            <img src="../assets/images/amongus.png" class="user-pic" onclick = "toggleMenu()">
+            <img src="../assets/images/Cena.png" class="user-pic" onclick = "toggleMenu()">
 
             <div class="sub-menu-wrap" id = "subMenu">
                 <div class="sub-menu">
                     <div class="user-info">
-                        <img src="../assets/images/user.png">
-                        <h2>{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</h2>
+                        <img src="../assets/images/Cena.png">
+                        <h6>{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</h6>
                     </div>
                     <hr>
+                    
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="sub-menu-link">
-                            <p>Logout</p>
+                        <img src = "../assets/images/logout.png">
+                        <button type="submit" class="btn btn-danger">
+                            
+                           <span>Logout</span>
                         </button>
                     </form>
-
                 </div>
             </div>
         </nav>
-        <!-- Page content -->
-        <div class="content">
-            @yield('content')
-        </div>
     </div>
-
     <script>
         let subMenu = document.getElementById("subMenu");
 
@@ -52,96 +49,75 @@
             subMenu.classList.toggle("open-menu");
         }
     </script>
-    <!-- The sidebar -->
 
-    @adminRole
-        <div class="sidebar">
-            <a href="#me">ปฎิทิน</a>
-            <a href="{{ route('leaveMain') }}">ลงใบลา</a>
-            <a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a>
-            <a href="#me">จัดการหมวดวิชา</a>
-            <a href="#me">ประวัติการลาทั้งหมด</a>
-            <a href="#me">ประเภทการลา</a>
-            <a href="#me">ประวัติการเข้างาน</a>
-            <a href="#me">ข้อมูลการลา</a>
-            @leaderRole
-                <a href="#me">Dashboard</a>
-            @endleaderRole
-            @deputyRole
-                <a href="#me">Dashboard</a>
-            @enddeputyRole
-            @directorRole
-                <a href="#me">Dashboard</a>
-                <a href="#me">รับทราบการลา</a>
-            @enddirectorRole
-        </div>
-    @endadminRole
-
+    <div class="left">
     @teacherRole
-        <div class="sidebar">
-            <a href="#me">ปฎิทิน</a>
-            <a href="{{ route('leaveMain') }}">ลงใบลา</a>
-            <a href="#me">ประวัติการลาทั้งหมด</a>
-            <a href="#me">ข้อมูลการลา</a>
-            <a href="#me">ประวัติการเข้างาน</a>
+        <ul class="sidebar-nav">
+            <li><a href="#me">ปฎิทิน</a></li>
+            <li><a href="{{ route('leaveMain') }}">ลงใบลา</a></li>
+            <li><a href="#me">ประวัติการลาทั้งหมด</a></li>
+            <li><a href="#me">ข้อมูลการลา</a></li>
+            <li><a href="#me">ประวัติการเข้างาน</a></li>
             @adminRole
-            <a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a>
-            <a href="#me">จัดการหมวดวิชา</a>
-            <a href="#me">ประเภทการลา</a>   
+            <li><a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a></li>
+            <li><a href="#me">จัดการหมวดวิชา</a></li>
+            <li><a href="#me">ประเภทการลา</a></li>   
             @endadminRole
-        </div>
+        </ul>
     @endteacherRole
 
     @leaderRole
-        <div class="sidebar">
-            <a href="#me">Dashboard</a>
-            <a href="#me">ปฎิทิน</a>
-            <a href="{{ route('leaveMain') }}">ลงใบลา</a>
-            <a href="#me">ประวัติการลาทั้งหมด</a>
-            <a href="#me">ข้อมูลการลา</a>
-            <a href="#me">ประวัติการเข้างาน</a>
+        <ul class="sidebar-nav">
+            <li><a href="#me">Dashboard</a></li>
+            <li><a href="#me">ปฎิทิน</a></li>
+            <li><a href="{{ route('leaveMain') }}">ลงใบลา</a></li>
+            <li><a href="#me">ประวัติการลาทั้งหมด</a></li>
+            <li><a href="#me">ข้อมูลการลา</a></li>
+            <li><a href="#me">ประวัติการเข้างาน</a></li>
             @adminRole
-            <a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a>
-            <a href="#me">จัดการหมวดวิชา</a>   
+            <li><a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a></li>
+            <li><a href="#me">จัดการหมวดวิชา</a></li>   
             @endadminRole
-        </div>
+        </ul>
     @endleaderRole
 
     @deputyRole
-        <div class="sidebar">
-            <a href="#me">Dashboard</a>
-            <a href="#me">ปฎิทิน</a>
-            <a href="{{ route('leaveMain') }}">ลงใบลา</a>
-            <a href="#me">ประวัติการลาทั้งหมด</a>
-            <a href="#me">ข้อมูลการลา</a>
-            <a href="#me">ประวัติการเข้างาน</a>
+        <ul class="sidebar-nav">
+            <li><a href="#me">Dashboard</a></li>
+            <li><a href="#me">ปฎิทิน</a></li>
+            <li><a href="{{ route('leaveMain') }}">ลงใบลา</a></li>
+            <li><a href="#me">ประวัติการลาทั้งหมด</a></li>
+            <li><a href="#me">ข้อมูลการลา</a></li>
+            <li><a href="#me">ประวัติการเข้างาน</a></li>
             @adminRole
-            <a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a>
-            <a href="#me">จัดการหมวดวิชา</a>   
+            <li><a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a></li>
+                <li><a href="#me">จัดการหมวดวิชา</a></li>   
             @endadminRole
 
-        </div>
+        </ul>
     @enddeputyRole
 
     @directorRole
-        <div class="sidebar">
-            <a href="#me">Dashboard</a>
-            <a href="#me">รับทราบการลา</a>
-            <a href="#me">ปฎิทิน</a>
-            <a href="{{ route('leaveMain') }}">ลงใบลา</a>
-            <a href="#me">ประวัติการลาทั้งหมด</a>
-            <a href="#me">ข้อมูลการลา</a>
-            <a href="#me">ประวัติการเข้างาน</a>
+        <ul class="sidebar-nav">
+        <li><a href="#me">Dashboard</a></li>
+        <li><a href="#me">รับทราบการลา</a></li>
+        <li><a href="#me">ปฎิทิน</a></li>
+        <li><a href="{{ route('leaveMain') }}">ลงใบลา</a></li>
+        <li><a href="#me">ประวัติการลาทั้งหมด</a></li>
+        <li><a href="#me">ข้อมูลการลา</a></li>
+        <li><a href="#me">ประวัติการเข้างาน</a></li>
             @adminRole
-            <a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a>
-            <a href="#me">จัดการหมวดวิชา</a>   
+            <li><a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a></li>
+            <li><a href="#me">จัดการหมวดวิชา</a></li>
             @endadminRole
-        </div>
+        </ul>
 
     @enddirectorRole
+    </div>
 
-
-
+    <div class="main">
+        @yield('content')
+    </div>
 </body>
 
 </html>

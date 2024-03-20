@@ -1,5 +1,6 @@
-<!-- extends -->
+@extends('layout')
 <!-- section() -->
+@section('content')
     <h1 class="mb-0">Detail Page</h1>
     <hr />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -54,3 +55,4 @@
     </div>
         <a href="/acknowledge" class="btn btn-danger ">Back</a>
 <!-- endsection -->
+@endsection
