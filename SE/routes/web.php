@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LeaveOfAbsenseController;
 use App\Http\Controllers\AcknowledgeController;
+use App\Http\Controllers\AttendanceController;
 use App\Models\User;
 
 /*
@@ -63,6 +64,8 @@ Route::get('/search', [AcknowledgeController::class,'search']);
 Route::get('/acknowledge/{id}', [AcknowledgeController::class,'acknowledge'])->name('accept');
 Route::get('/acknowledge/detail/{id}', [AcknowledgeController::class,'show'])->name('ackdetail');
 Route::get('/acknowledge/detail/{file}', [AcknowledgeController::class,'download'])->name('ackdownload');
+
+Route::get('/Attendance', [AttendanceController::class, 'showAllatten'])->name('display.attendance');
 
 Route::middleware(['auth', 'role:ผู้ดูแลระบบ'])->group(function () {
     // Your routes here
