@@ -68,7 +68,7 @@
 
     @leaderRole
         <ul class="sidebar-nav">
-            <li><a href="#me">Dashboard</a></li>
+            <li><a href="/display/leaveofabsences">Dashboard</a></li>
             <li><a href="#me">ปฎิทิน</a></li>
             <li><a href="{{ route('leaveMain') }}">ลงใบลา</a></li>
             <li><a href="#me">ประวัติการลาทั้งหมด</a></li>
@@ -83,7 +83,7 @@
 
     @deputyRole
         <ul class="sidebar-nav">
-            <li><a href="#me">Dashboard</a></li>
+            <li><a href="/display/leaveofabsences">Dashboard</a></li>
             <li><a href="#me">ปฎิทิน</a></li>
             <li><a href="{{ route('leaveMain') }}">ลงใบลา</a></li>
             <li><a href="#me">ประวัติการลาทั้งหมด</a></li>
@@ -99,7 +99,7 @@
 
     @directorRole
         <ul class="sidebar-nav">
-        <li><a href="#me">Dashboard</a></li>
+        <li><a href="/display/leaveofabsences">Dashboard</a></li>
         <li><a href="#me">รับทราบการลา</a></li>
         <li><a href="#me">ปฎิทิน</a></li>
         <li><a href="{{ route('leaveMain') }}">ลงใบลา</a></li>

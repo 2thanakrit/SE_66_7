@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LeaveOfAbsenseController;
 use App\Http\Controllers\AcknowledgeController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\CrudController;
 use App\Models\User;
 
 /*
@@ -66,6 +67,12 @@ Route::get('/acknowledge/detail/{id}', [AcknowledgeController::class,'show'])->n
 Route::get('/acknowledge/detail/{file}', [AcknowledgeController::class,'download'])->name('ackdownload');
 
 Route::get('/Attendance', [AttendanceController::class, 'showAllatten'])->name('display.attendance');
+
+Route::get('/display/leaveofabsences',[CrudController::class,'showAllLeaveofabsences']);
+Route::get('/edit/leaveofabsences',[CrudController::class,'editLeave'])->name('editLeave');
+Route::get('/leaveofabsences/search', [CrudController::class, 'search'])->name('searchLeaveHis');
+Route::get('/add/leaveofabsences',[CrudController::class,'addLeave'])->name('addLeave');
+Route::get('/leaveDetail/{id}', [CrudController::class, 'detail'])->name('leaveDetail');
 
 Route::middleware(['auth', 'role:ผู้ดูแลระบบ'])->group(function () {
     // Your routes here
