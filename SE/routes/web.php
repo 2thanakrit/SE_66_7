@@ -57,8 +57,11 @@ Route::get('/leaveMain/search', [App\Http\Controllers\LeaveOfAbsenseController::
 Route::get('/leaveDetail/{id}', [App\Http\Controllers\LeaveOfAbsenseController::class, 'detail'])->name('leaveDetail');
 Route::get('/leaveDetail/{file}', [App\Http\Controllers\LeaveOfAbsenseController::class, 'download'])->name('leaveDownload');
 
-Route::get('/Acknowledge', [App\Http\Controllers\AcknowledgeController::class, 'index']);
-Route::get('/Accepted/{id}', [App\Http\Controllers\AcknowledgeController::class, 'accepted']);
+Route::get('/acknowledge', [AcknowledgeController::class, 'index'])->name('ackindex');
+Route::get('/search', [AcknowledgeController::class,'search']);
+Route::get('/acknowledge/{id}', [AcknowledgeController::class,'acknowledge'])->name('accept');
+Route::get('/acknowledge/detail/{id}', [AcknowledgeController::class,'show'])->name('ackdetail');
+Route::get('/acknowledge/detail/{file}', [AcknowledgeController::class,'download'])->name('ackdownload');
 
 Route::middleware(['auth', 'role:ผู้ดูแลระบบ'])->group(function () {
     // Your routes here

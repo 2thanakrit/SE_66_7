@@ -8,20 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Acknowledge extends Model
 {
     use HasFactory;
-    
-    protected $table = 'leaveofabsences';
 
+    protected $table = 'leaveofabsences';
+    
     public $timestamps=false;
 
     protected $fillable = [
-        'id',
         'u_id',
         'typeL_id',
         'firstDate',
         'endDate',
         'detail',
-        'file',
         'date',
+        'file',
         'status',
         'u_approver',
         'acknowledge'
@@ -36,7 +35,7 @@ class Acknowledge extends Model
     {
         return $this->belongsTo(Typeleave::class, 'typeL_id');
     }
-
+    
     public function userapprover()
     {
         return $this->belongsTo(User::class, 'u_approver');
