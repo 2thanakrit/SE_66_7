@@ -1,6 +1,4 @@
 @extends('layout')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
 @section('content')
 <div class="container mt-5">
     <div class="card">
@@ -38,17 +36,22 @@
                 <div class="mb-3">
                     @foreach ($roles as $role)
                         <div class="form-check">
-
-                            <input class="form-check-input" type="checkbox"
-                                value="{{ $role->id }}" id="role" name="role[]" multiple
-                                {{ $user->roles->contains($role->id) ? 'checked' : '' }}>
+                            @if ($role->name === 'ผู้ดูแลระบบ')
+                                <input class="form-check-input" type="checkbox"
+                                    value="{{ $role->id }}" id="role" name="role[]" multiple
+                                    {{ $user->roles->contains($role->id) ? 'checked' : '' }}>
+                            @else
+                                <input class="form-check-input" type="radio"
+                                    value="{{ $role->id }}" id="role" name="role[]" multiple
+                                    {{ $user->roles->contains($role->id) ? 'checked' : '' }}>
+                            @endif
                             <label class="form-check-label" for="flexCheckDefault">
                                 <span>{{ $role->name }}</span>
                             </label>
-
                         </div>
                     @endforeach
                 </div>
+                
         
 
                 <button type="submit" class="btn btn-primary">Submit</button>
