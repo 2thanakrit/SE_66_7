@@ -60,14 +60,25 @@
                                 
                 <div class="col-md-3 ">
                     <div class="form-group">
-                        <form methode="get" action="/search">
+                        <form method="get" action="/search" onsubmit="return validateForm()">
                             <div class="input-group">
-                                <input class="form-control" name="search" placeholder="Search..." value="{{isset($search)?$search:''}}">
+                                <input class="form-control" id="searchInput" name="search" placeholder="Search..." value="{{isset($search)?$search:''}}">
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </div>
                         </form>
                     </div>
-                </div>  
+                </div>
+
+                <script>
+                    function validateForm() {
+                        var searchInput = document.getElementById("searchInput").value;
+                        if (searchInput.trim() == "") {
+                            alert("กรุณากรอกคำค้นหา");
+                            return false;
+                        }
+                        return true;
+                    }
+                </script>
 
             <div class="card-body">
                 <table class="table table-sm table-bordered table-striped">
