@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\TypeLeave;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
 
 class CrudController extends Controller
 {
@@ -15,7 +16,6 @@ class CrudController extends Controller
     {
         $user = Auth::user();
         
-        // ใช้ paginate(7) เพื่อแบ่งหน้าข้อมูล
         $all_leaveofabsences = Leaveofabsence::orderBy('id', 'desc')
             ->where('u_approver', $user->id)
             ->paginate(7); 
@@ -49,7 +49,31 @@ class CrudController extends Controller
         $detail = leaveOfAbsence::find($id);
         return view('detailLeave', compact('detail'));
     }
-   
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $all_leaveofabsences  = Leaveofabsence::where(function ($query) use ($search) {
+                $query->where('firstDate', 'like', "%$search%")                  
+                    ->orWhere('endDate', 'like', "%$search%")                  
+                    ->orWhereHas('user', function ($query) use ($search) {
+                        $query->where('firstname', 'like', "%$search%")
+                            ->orWhere('lastname', 'like', "%$search%");
+                    })
+                    ->orWhereHas('userapprover', function ($query) use ($search){
+                        $query->where('firstname', 'like', "%$search%")
+                            ->orWhere('lastname', 'like', "%$search%");
+                    })
+                    ->orWhereHas('typeLeave', function ($query) use ($search) {
+                        $query->where('name', 'like', "%$search%");
+                    });
+        })->paginate(7);
+
+        return view('all-leaveofabsences', compact('all_leaveofabsences'));
+    }
+
+    public function boot(): void{
+        Paginator::useBootstrap();
+    }
    
  
 }

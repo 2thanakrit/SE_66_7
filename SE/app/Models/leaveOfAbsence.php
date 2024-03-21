@@ -37,6 +37,9 @@ class leaveOfAbsence extends Model
     {
         return $this->belongsTo(User::class,'u_approver','id');
     }
-
+    public function userapprover()
+    {
+        return $this->belongsTo(User::class, 'u_approver');
+    }
 
 }

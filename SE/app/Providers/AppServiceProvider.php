@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,5 +37,6 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('directorRole', function () {
             return Auth::user()->roles()->where('role_id', 7)->exists();
         });
+        Paginator::useBootstrap();
     }
 }

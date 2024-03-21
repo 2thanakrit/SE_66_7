@@ -55,10 +55,19 @@
                  @if(auth()->user()->roles()->where('name', 'ผู้อำนวยการ')->exists())
                 <div class="container">
                     <a href="{{ route('ackindex') }}" class="btn btn-primary btn-sm float-end acknowledgeBtn">acknowledge</a>
-                </div>
-                
+                </div>               
                 @endif
-                
+                                
+                <div class="col-md-3 ">
+                    <div class="form-group">
+                        <form methode="get" action="/search">
+                            <div class="input-group">
+                                <input class="form-control" name="search" placeholder="Search..." value="{{isset($search)?$search:''}}">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>  
 
             <div class="card-body">
                 <table class="table table-sm table-bordered table-striped">
