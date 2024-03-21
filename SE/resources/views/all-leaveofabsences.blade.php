@@ -15,16 +15,9 @@
 <body>
     <div class="container">
         <div class="card">
-            <div class="card-header" style="font-weight: bold; font-size: 24px;">Dashboard<button type="button" class="btn btn-primary float-end">acknowledge</button></div> <br>
+            <div class="card-header" style="font-weight: bold; font-size: 24px;">Dashboard</div> <br>
             <span class="alert alert-success" id="alert-success" style="display: none;"></span>
             <span class="alert alert-danger" id="alert-danger" style="display: none;"></span>
-        
-
-
-
-
-
-
 
             <div class="container">
             @php
@@ -59,13 +52,19 @@
                 </div>
             </div>
             </div>
-
+                 @if(auth()->user()->roles()->where('name', 'ผู้อำนวยการ')->exists())
+                <div class="container">
+                    <a href="{{ route('ackindex') }}" class="btn btn-primary btn-sm float-end acknowledgeBtn">acknowledge</a>
+                </div>
+                
+                @endif
+                
 
             <div class="card-body">
                 <table class="table table-sm table-bordered table-striped">
                     <thead>
                         
-                        <br>
+                      
                         <tr>
                             <th>S/N</th>
                             <th>Name</th>
