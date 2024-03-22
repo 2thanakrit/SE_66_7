@@ -73,7 +73,7 @@ Route::get('/edit/leaveofabsences',[CrudController::class,'editLeave'])->name('e
 Route::get('/leaveofabsences/search', [CrudController::class, 'search'])->name('searchLeaveHis');
 Route::get('/add/leaveofabsences',[CrudController::class,'addLeave'])->name('addLeave');
 Route::get('/leaveDetail/{id}', [CrudController::class, 'detail'])->name('leaveDetail');
-Route::get('/search', [CrudController::class,'search']);
+Route::get('/searchapprover', [CrudController::class,'search']);
 
 
 Route::middleware(['auth', 'role:ผู้ดูแลระบบ'])->group(function () {

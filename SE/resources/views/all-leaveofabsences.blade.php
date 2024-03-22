@@ -60,7 +60,7 @@
                                 
                 <div class="col-md-3 ">
                     <div class="form-group">
-                        <form method="get" action="/search" onsubmit="return validateForm()">
+                        <form method="get" action="/searchapprover" onsubmit="return validateForm()">
                             <div class="input-group">
                                 <input class="form-control" id="searchInput" name="search" placeholder="Search..." value="{{isset($search)?$search:''}}">
                                 <button type="submit" class="btn btn-primary">Search</button>
