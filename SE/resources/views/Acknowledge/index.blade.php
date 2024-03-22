@@ -62,7 +62,8 @@
                 
             </tr>
             @endforeach
-        </tbody>
+        </tbody>   
     </table>
+    <a href="/display/leaveofabsences" class="btn btn-danger ">Back</a>
 </div>
 @endsection
