@@ -60,8 +60,8 @@
             <li><a href="{{ route('display.attendance') }}">ประวัติการเข้างาน</a></li>
             @adminRole
             <li><a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a></li>
-            <li><a href="#me">จัดการหมวดวิชา</a></li>
-            <li><a href="#me">ประเภทการลา</a></li>   
+            <li><a href="/display/subcategory">จัดการหมวดวิชา</a></li>
+            <li><a href="/display/typeleave">จัดการประเภทการลา</a></li> 
             @endadminRole
         </ul>
     @endteacherRole
@@ -76,7 +76,8 @@
             <li><a href="{{ route('display.attendance') }}">ประวัติการเข้างาน</a></li>
             @adminRole
             <li><a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a></li>
-            <li><a href="#me">จัดการหมวดวิชา</a></li>   
+            <li><a href="/display/subcategory">จัดการหมวดวิชา</a></li>   
+            <li><a href="/display/typeleave">จัดการประเภทการลา</a></li>
             @endadminRole
         </ul>
     @endleaderRole
@@ -91,7 +92,8 @@
             <li><a href="{{ route('display.attendance') }}">ประวัติการเข้างาน</a></li>
             @adminRole
             <li><a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a></li>
-                <li><a href="#me">จัดการหมวดวิชา</a></li>   
+                <li><a href="/display/subcategory">จัดการหมวดวิชา</a></li>  
+                <li><a href="/display/typeleave">จัดการประเภทการลา</a></li> 
             @endadminRole
 
         </ul>
@@ -108,7 +110,8 @@
         <li><a href="{{ route('display.attendance') }}">ประวัติการเข้างาน</a></li>
             @adminRole
             <li><a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a></li>
-            <li><a href="#me">จัดการหมวดวิชา</a></li>
+            <li><a href="/display/subcategory">จัดการหมวดวิชา</a></li>
+            <li><a href="/display/typeleave">จัดการประเภทการลา</a></li>
             @endadminRole
         </ul>
 

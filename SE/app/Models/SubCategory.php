@@ -9,5 +9,5 @@ class SubCategory extends Model
 {
     use HasFactory;
     protected $table = 'subcategories';
-    
+    public $timestamps = false; 
 }

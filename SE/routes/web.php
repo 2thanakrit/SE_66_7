@@ -10,6 +10,8 @@ use App\Http\Controllers\AcknowledgeController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CrudController;
 use App\Http\Controllers\HisleaveController;
+use App\Http\Controllers\TypeleaveController;
+use App\Http\Controllers\SubcategoryController;
 use App\Models\User;
 
 /*
@@ -80,6 +82,15 @@ Route::get('/leavetype', function () {return view('leavetype');});
 Route::get('/leavehis', function () {return view('leavehis');});
 Route::get('/leavetype', [HisleaveController::class, 'showleavetype']);
 Route::get('/leavehis', [HisleaveController::class, 'showleavehis']);
+
+Route::get('/display/subcategory',[SubcategoryController::class,'showAllSubcategory'])->name('showAllSubcategory');
+Route::get('/add/subcategory',[SubcategoryController::class,'addSubcategory'])->name('addSubcategory');
+Route::get('/edit/subcategory',[SubcategoryController::class,'editSubcategory'])->name('editSubcategory');
+Route::get('delete/subcategory/{id}',[SubcategoryController::class,'deleteSubcategory'])->name('deleteSubcategory');
+//หน้าจัดการชนิดการลาแก้ไขชื่อ-จำนวน
+Route::get('/display/typeleave',[TypeleaveController::class,'showAllTypeleave'])->name('showAllTypeleave');
+Route::get('/edit/typeleave',[TypeleaveController::class,'editTypeleave'])->name('editTypeleave');
+
 
 Route::middleware(['auth', 'role:ผู้ดูแลระบบ'])->group(function () {
     // Your routes here

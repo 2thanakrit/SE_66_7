@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TypeLeave extends Model
+class Typeleave extends Model
 {
-    use HasFactory;
+    public $timestamps = false; //...
     protected $table = 'typeleaves';
-    
+    protected $fillable = ['*'  ];
+    use HasFactory;
 }
