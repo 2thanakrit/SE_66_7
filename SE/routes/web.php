@@ -9,6 +9,7 @@ use App\Http\Controllers\LeaveOfAbsenseController;
 use App\Http\Controllers\AcknowledgeController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CrudController;
+use App\Http\Controllers\HisleaveController;
 use App\Models\User;
 
 /*
@@ -75,6 +76,10 @@ Route::get('/add/leaveofabsences',[CrudController::class,'addLeave'])->name('add
 Route::get('/leaveDetail/{id}', [CrudController::class, 'detail'])->name('leaveDetail');
 Route::get('/searchapprover', [CrudController::class,'search']);
 
+Route::get('/leavetype', function () {return view('leavetype');});
+Route::get('/leavehis', function () {return view('leavehis');});
+Route::get('/leavetype', [HisleaveController::class, 'showleavetype']);
+Route::get('/leavehis', [HisleaveController::class, 'showleavehis']);
 
 Route::middleware(['auth', 'role:ผู้ดูแลระบบ'])->group(function () {
     // Your routes here

@@ -9,4 +9,8 @@ class eventDate extends Model
 {
     use HasFactory;
     protected $table = 'event_dates';
+    public function eventdate()
+    {
+        return $this->belongsTo(datename::class);
+    }
 }
