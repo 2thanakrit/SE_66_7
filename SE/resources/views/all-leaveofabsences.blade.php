@@ -107,7 +107,7 @@
                                     <td>{{$item->typeleave->name}}</td>
                                     <td>{{$item->firstDate}}</td>
                                     <td>{{$item->endDate}}</td>
-                                    <td><a href="{{ route('leaveDetail', ['id' => $item->id]) }}" class="btn btn-secondary btn-sm">Detail</a></td>
+                                    <td><a href="{{ route('detailLeave', ['id' => $item->id]) }}" class="btn btn-secondary btn-sm">Detail</a></td>
                                     <td>{{$item->date}}</td>
                                     <td>
                                         @if($item->status == 'อนุมัติ')
