@@ -75,7 +75,7 @@ Route::get('/display/leaveofabsences',[CrudController::class,'showAllLeaveofabse
 Route::get('/edit/leaveofabsences',[CrudController::class,'editLeave'])->name('editLeave');
 Route::get('/leaveofabsences/search', [CrudController::class, 'search'])->name('searchLeaveHis');
 Route::get('/add/leaveofabsences',[CrudController::class,'addLeave'])->name('addLeave');
-Route::get('/leaveDetail/{id}', [CrudController::class, 'detail'])->name('leaveDetail');
+Route::get('/detailLeave/{id}', [CrudController::class, 'detail'])->name('detailLeave');
 Route::get('/searchapprover', [CrudController::class,'search']);
 
 Route::get('/leavetype', function () {return view('leavetype');});
