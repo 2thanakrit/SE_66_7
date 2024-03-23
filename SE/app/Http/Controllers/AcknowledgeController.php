@@ -12,7 +12,7 @@ class AcknowledgeController extends Controller
      */
     public function index()
     {
-        $Acknowledge = Acknowledge::where('status', '=', 'อนุมัติ')->get();
+        $Acknowledge = Acknowledge::where('status', '=', 'อนุมัติ')->paginate(5);
 
         return view('acknowledge.index', compact('Acknowledge'));
     }

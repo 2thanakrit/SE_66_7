@@ -55,15 +55,22 @@
                 </td>
                 @else
                 <td>
-                    <a href="{{route('accept', $ack->id)}}" class="btn btn-success">Acknowledge</a>
-                    
+                    <a href="{{route('accept', $ack->id)}}" class="btn btn-success" onclick="return confirm('Are you sure you want to confirm this acknowledge?')">Acknowledge</a>
+                    <!-- <button type="button" class="btn btn-success acknowledgeBtn" value="{{$ack->id}}">Acknowledge</button> -->
                 </td>
                 @endif
                 
             </tr>
             @endforeach
-        </tbody>   
+        </tbody>
     </table>
-    <a href="/display/leaveofabsences" class="btn btn-danger ">Back</a>
+    
 </div>
+<div class="">
+{{$Acknowledge->links()}}
+</div>
+<div class="col-md-1 ms-auto">
+<a href="/display/leaveofabsences" class="btn btn-danger ">Back</a>
+</div>
+<br>
 @endsection
