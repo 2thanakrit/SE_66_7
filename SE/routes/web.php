@@ -12,6 +12,8 @@ use App\Http\Controllers\CrudController;
 use App\Http\Controllers\HisleaveController;
 use App\Http\Controllers\TypeleaveController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\DateNameController;
 use App\Models\User;
 
 /*
@@ -96,5 +98,27 @@ Route::middleware(['auth', 'role:ผู้ดูแลระบบ'])->group(fun
     // Your routes here
     Route::get('/user/create', [UserController::class, 'indexCreate'])->name('createUser');
 });
+Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
+Route::delete('/calendar/{id}',[CalendarController::class, 'destroy'])->name('calendar.destroy');
+
+// เส้นทางสำหรับแสดงหน้าสร้างข้อมูลใหม่ของ Calendar
+Route::get('/calendar/create', [CalendarController::class, 'create'])->name('calendar.create');
+
+// เส้นทางสำหรับบันทึกข้อมูลใหม่ของ Calendar
+Route::post('/calendar', [CalendarController::class, 'store'])->name('calendar.store');
+// เส้นทางสำหรับแก้ไขข้อมูลใหม่ของ Calendar
+Route::get('calendar/{id}/edit', [CalendarController::class, 'edit'])->name('calendar.edit');
+Route::put('/calendar/{id}', [CalendarController::class, 'update'])->name('calendar.update');
+Route::get('/calendar/{id}', [CalendarController::class, 'detail'])->name('calendar.detail');
+
+
+//DateName
+Route::get('/date_names', [DateNameController::class, 'index'])->name('date_names.index');
+Route::get('/date_names/create', [DateNameController::class, 'create'])->name('date_names.create');
+Route::post('/date_names', [DateNameController::class, 'store'])->name('date_names.store');
+Route::delete('/date_names/{id}',[DateNameController::class, 'destroy'])->name('date_names.destroy');
+Route::get('date_names/{id}/edit', [DateNameController::class, 'edit'])->name('date_names.edit');
+Route::put('/date_names/{id}', [DateNameController::class, 'update'])->name('date_names.update');
+
 
 });

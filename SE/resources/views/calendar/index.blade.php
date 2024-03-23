@@ -117,7 +117,55 @@
     </div>
 
     <div class="main">
-        @yield('content')
+        <!-- Page content -->
+        <div class="content">
+           <!-- resources/views/calendar/index.blade.php -->
+           <div class="container">
+        <div class="card">
+            <div class="card-header">EventDate    @adminRole<a href="{{ route('date_names.index') }}" class="btn btn-primary">Config DateName</a> <a href="{{ route('calendar.create') }}" class="btn btn-success">Add Event</a>@endadminRole </div>
+            <div class="card-body">
+                <table class="table table-sm table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>DateName</th>
+                            <th>Check Rest</th>
+                            <th>Detail</th>
+                            @adminRole<th>Action</th>@endadminRole <!-- เพิ่มหัวข้อ Action -->
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                    @foreach($events->sortBy('date') as $event)
+                    <tr>
+                        <td>{{ $event->date }}</td>
+                        <td>{{ $event->dateName->name }}</td>
+                        <td>{{ $event->checkRest == 1 ? 'หยุด' : 'ไม่หยุด'  }}</td>
+                        <td><a href="{{ route('calendar.detail', ['id' => $event->id]) }}" class="btn btn-secondary">Details</a></td>
+
+                        @adminRole
+                        <td>
+                            <form action="{{ route('calendar.destroy', $event->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <a href="{{ route('calendar.edit', $event->id) }}" class="btn btn-primary">Edit</a>
+                            </form>
+                        </td>
+                        @endadminRole
+                    </tr>
+                    @endforeach
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+           </div>
+        </div>
+
+        </div>
+    </div>
+
     </div>
 </body>
 

@@ -8,5 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class datename extends Model
 {
     use HasFactory;
-    protected $table = 'datename';
+    protected $table = 'date_names';
+    protected $fillable = [
+        'name',
+    ];
+    public $timestamps = false;
+    use HasFactory;
+    public function eventDates()
+{
+    return $this->hasMany(Calendar::class, 'dateN_id', 'id');
+}
 }
