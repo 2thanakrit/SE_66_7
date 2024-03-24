@@ -1,9 +1,6 @@
-@extends('layout');
-@section('Title')
- จัดการหมวดวิชา
-@endsection   
-
-@section('content');
+@extends('layout')
+   
+@section('content')
     <h1>จัดการหมวดวิชา</h1>
 <head>
     <meta charset="UTF-8">

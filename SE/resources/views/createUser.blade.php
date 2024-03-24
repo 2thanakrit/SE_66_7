@@ -12,40 +12,51 @@
                                     <div class="mb-3">
                                         <label for="firstname" class="form-label">ชื่อ</label>
                                         <input type="text" class="form-control" id="firstname" name="firstname">
+                                        @error('firstname') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="lastname" class="form-label">นามสกุล</label>
                                         <input type="text" class="form-control" id="lastname" name="lastname">
+                                        @error('lastname') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="email" class="form-label">อีเมล</label>
                                         <input type="email" class="form-control" id="email" name="email">
+                                        @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="password" class="form-label">รหัสผ่าน</label>
                                         <input type="password" class="form-control" id="password" name="password">
+                                        @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="subcategory" class="form-label">หมวดวิชา</label>
                                         <select class="form-select" id="subcategory" name="subcategory">
+                                            <option selected></option>
                                             @foreach ($subcategories as $subcategory)
                                                 <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
                                             @endforeach
                                         </select>
+                                        @error('subcategory') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
+
                                     <div class="mb-3">
                                         @foreach ($roles as $role)
                                             <div class="form-check">
-
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="{{ $role->id }}" id="role" name="role[] multiple">
+                                                @if ($role->name === 'ผู้ดูแลระบบ')
+                                                    <input class="form-check-input" type="checkbox"
+                                                        value="{{ $role->id }}" id="role" name="role[]">
+                                                @else
+                                                    <input class="form-check-input" type="radio"
+                                                        value="{{ $role->id }}" id="role" name="role[]"> 
+                                                @endif
                                                 <label class="form-check-label" for="flexCheckDefault">
                                                     <span>{{ $role->name }}</span>
                                                 </label>
-
                                             </div>
                                         @endforeach
+                                        @error('role') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                     {{-- <div class="mb-3">
 

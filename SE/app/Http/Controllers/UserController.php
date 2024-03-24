@@ -19,7 +19,7 @@ use Illuminate\Validation\Rule;
 class UserController extends Controller
 {
     function index(){
-        $users = User::all();
+        $users = User::orderBy('id', 'desc')->get();
         return view('userMain',compact('users'));
     }
 
@@ -31,7 +31,7 @@ class UserController extends Controller
         'lastname' => 'required|string|max:255',
         'email' => 'required|email|unique:users,email',
         'password' => 'required|string|min:7',
-        'subcategory' => 'required|exists:subcategorys,id',
+        'subcategory' => 'required|exists:subcategories,id',
         'role' => 'required|array',
         'role.*' => 'exists:roles,id',
     ]);

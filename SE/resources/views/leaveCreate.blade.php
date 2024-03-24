@@ -34,16 +34,16 @@
                                 @error('firstDate') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3 mt-3">
-                                <label>วันที่ที่สิ้นสุด</label>
+                                <label>วันที่สิ้นสุด</label>
                                 <input type="date" name="endDate" value="{{ old('endDate') }}">
                                 @error('endDate') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-3">
-                                <label>ข้อมูลเพิ่มเติม</label>
+                                <label>ข้อมูลเพิ่มเติม (ถ้ามี)</label>
                                 <textarea name="detail" class="form-control mt-2" rows="3">{{ old('detail') }}</textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="file"> Upload File (ถ้ามี)</label>
+                                <label for="file"> Upload File (ถ้ามี) *pdf,jpg,jpeg,png</label>
                                 <input type="file" name="file" class="form-control mt-2">
                             </div>
 

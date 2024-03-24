@@ -88,7 +88,7 @@ class LeaveOfAbsenseController extends Controller
             'firstDate' => 'required',
             'endDate' => 'required',
             'detail' => 'nullable|max:255|string',
-            'file' => 'nullable|file|max:1024|mimes:pdf,docx,doc,jpg,jpeg,png',
+            'file' => 'nullable|file|max:1024|mimes:pdf,jpg,jpeg,png',
         ]);
 
         // เรียกใช้ Model leaveOfAbsense
