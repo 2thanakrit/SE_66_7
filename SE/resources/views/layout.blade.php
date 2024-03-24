@@ -28,7 +28,12 @@
                         <h6>{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</h6>
                     </div>
                     <hr>
-                    
+                    {{-- ปุ่ม Attendance --}}
+                    <form action="{{ route('attendance.add') }}" method="POST" style="margin: 10px;">
+                        @csrf
+                        <button type="submit" class="btn btn-primary btn-sm">Record Attendance</button>
+                    </form>
+                    {{-- ส่วนของ logout  --}}
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         @method('DELETE')
