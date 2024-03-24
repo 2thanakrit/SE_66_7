@@ -71,7 +71,10 @@ Route::get('/acknowledge/{id}', [AcknowledgeController::class,'acknowledge'])->n
 Route::get('/acknowledge/detail/{id}', [AcknowledgeController::class,'show'])->name('ackdetail');
 Route::get('/acknowledge/detail/{file}', [AcknowledgeController::class,'download'])->name('ackdownload');
 
+//การเข้างาน
 Route::get('/Attendance', [AttendanceController::class, 'showAllatten'])->name('display.attendance');
+Route::get('/Attendance/search', [AttendanceController::class,'search'])->name('display.search');
+Route::post('/attendance/add', [AttendanceController::class, 'addAttendance'])->name('attendance.add');
 
 Route::get('/display/leaveofabsences',[CrudController::class,'showAllLeaveofabsences']);
 Route::get('/edit/leaveofabsences',[CrudController::class,'editLeave'])->name('editLeave');
