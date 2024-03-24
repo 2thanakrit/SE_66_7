@@ -1,9 +1,6 @@
-@extends('layout');
-@section('Title')
- จัดการชนิดการลา
-@endsection   
+@extends('layout')
 
-@section('content');
+@section('content')
     <h1>จัดการชนิดการลา</h1>
 
     <head>
