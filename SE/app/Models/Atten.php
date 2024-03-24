@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 class Atten extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
+    
     protected $table = 'attendances'; 
 
     public function user(){
