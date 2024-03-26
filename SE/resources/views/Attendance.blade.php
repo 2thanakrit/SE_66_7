@@ -30,7 +30,7 @@
 
                 <div class="mb-3">
                     @if (isset($all_atten))
-                    <p>จำนวนการลาที่พบ: {{ count($all_atten) }}</p>
+                    <p>จำนวนการเข้างานที่พบ: {{ count($all_atten) }}</p>
                     @endif
                 </div>
 
