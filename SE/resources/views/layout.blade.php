@@ -72,8 +72,8 @@
         <ul class="sidebar-nav">
             <li><a href="#me">ปฎิทิน</a></li>
             <li><a href="{{ route('leaveMain') }}">ลงใบลา</a></li>
-            <li><a href="#me">ประวัติการลาทั้งหมด</a></li>
-            <li><a href="#me">ข้อมูลการลา</a></li>
+            <li><a href="/leavehis">ประวัติการลาทั้งหมด</a></li>
+            <li><a href="/leavetype">ข้อมูลการลา</a></li>
             <li><a href="{{ route('display.attendance') }}">ประวัติการเข้างาน</a></li>
             @adminRole
             <li><a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a></li>
@@ -88,8 +88,8 @@
             <li><a href="#me">Dashboard</a></li>
             <li><a href="#me">ปฎิทิน</a></li>
             <li><a href="{{ route('leaveMain') }}">ลงใบลา</a></li>
-            <li><a href="#me">ประวัติการลาทั้งหมด</a></li>
-            <li><a href="#me">ข้อมูลการลา</a></li>
+            <li><a href="/leavehis">ประวัติการลาทั้งหมด</a></li>
+            <li><a href="/leavetype">ข้อมูลการลา</a></li>
             <li><a href="{{ route('display.attendance') }}">ประวัติการเข้างาน</a></li>
             @adminRole
             <li><a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a></li>
@@ -103,8 +103,8 @@
             <li><a href="#me">Dashboard</a></li>
             <li><a href="#me">ปฎิทิน</a></li>
             <li><a href="{{ route('leaveMain') }}">ลงใบลา</a></li>
-            <li><a href="#me">ประวัติการลาทั้งหมด</a></li>
-            <li><a href="#me">ข้อมูลการลา</a></li>
+            <li><a href="/leavehis">ประวัติการลาทั้งหมด</a></li>
+            <li><a href="/leavetype">ข้อมูลการลา</a></li>
             <li><a href="{{ route('display.attendance') }}">ประวัติการเข้างาน</a></li>
             @adminRole
             <li><a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a></li>
@@ -120,8 +120,8 @@
         <li><a href="#me">รับทราบการลา</a></li>
         <li><a href="#me">ปฎิทิน</a></li>
         <li><a href="{{ route('leaveMain') }}">ลงใบลา</a></li>
-        <li><a href="#me">ประวัติการลาทั้งหมด</a></li>
-        <li><a href="#me">ข้อมูลการลา</a></li>
+        <li><a href="/leavehis">ประวัติการลาทั้งหมด</a></li>
+        <li><a href="/leavetype">ข้อมูลการลา</a></li>
         <li><a href="{{ route('display.attendance') }}">ประวัติการเข้างาน</a></li>
             @adminRole
             <li><a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a></li>
