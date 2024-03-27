@@ -19,7 +19,7 @@ class TypeleaveController extends Controller
         // validate form
         $validator = Validator::make($request->all(),[
             'name' => 'required',
-            'number' => 'required',
+            'number' => 'required|numeric|min:0',
           
         ]);
         if ($validator->fails()) {
