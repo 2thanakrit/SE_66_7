@@ -65,7 +65,6 @@
                                             $day++;
                                         }
                                         $totalday = $day - $countSatSuneventday;
-                                        
                                     ?>
                                 @endforeach
                                     {{$totalday}} วัน
@@ -88,10 +87,8 @@
                                 <td>{{$item->approver->firstname}} {{$item->approver->lastname}}</td>
                                 <td>{{$item->date}}</td>                               
                             </tr>
-
-
                             @endforeach
-                            
+
                         </tbody>
                     </table>
                 </div>
