@@ -136,7 +136,7 @@
                         
                     </thead>
                     <tbody>
-                    @foreach($events->sortBy('date') as $event)
+                    @foreach($events->where('date', '>=', now()->startOfYear())->sortBy('date') as $event)
                     <tr>
                         <td>{{ $event->date }}</td>
                         <td>{{ $event->dateName->name }}</td>
@@ -145,12 +145,12 @@
 
                         @adminRole
                         <td>
-                            <form action="{{ route('calendar.destroy', $event->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                                <a href="{{ route('calendar.edit', $event->id) }}" class="btn btn-primary">Edit</a>
-                            </form>
+                        <form action="{{ route('calendar.destroy', $event->id) }}" method="POST" onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าต้องการลบเหตุการณ์นี้?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <a href="{{ route('calendar.edit', $event->id) }}" class="btn btn-primary">Edit</a>
+                        </form>
                         </td>
                         @endadminRole
                     </tr>

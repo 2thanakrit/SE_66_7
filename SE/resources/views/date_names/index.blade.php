@@ -122,7 +122,7 @@
            <!-- resources/views/calendar/index.blade.php -->
            <div class="container">
         <div class="card">
-            <div class="card-header">DateName <a href="{{ route('calendar.index') }}" class="btn btn-primary">Config EventDate</a> <a href="{{ route('date_names.create') }}" class="btn btn-primary">Add New DateName</a></div>
+            <div class="card-header">DateName <a href="{{ route('calendar.index') }}" class="btn btn-primary">Config EventDate</a> <a href="{{ route('date_names.create') }}" class="btn btn-success">Add New DateName</a></div>
             <div class="card-body">
                 <table class="table table-sm table-bordered table-striped">
                     <thead>
@@ -139,12 +139,12 @@
                         <!-- <td>{{ $dateName->id }}</td> -->
                         <td>{{ $dateName->name }}</td>
                         <td>
-                            <form action="{{ route('date_names.destroy', $dateName->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                                <a href="{{ route('date_names.edit', $dateName->id) }}" class="btn btn-primary">Edit</a>
-                            </form>
+                        <form action="{{ route('date_names.destroy', $dateName->id) }}" method="POST" onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าต้องการลบ DateName นี้?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <a href="{{ route('date_names.edit', $dateName->id) }}" class="btn btn-primary">Edit</a>
+                        </form>
                         </td>
                     </tr>
                     @endforeach
