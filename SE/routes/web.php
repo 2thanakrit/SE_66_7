@@ -38,7 +38,7 @@ Route::get('/layoutV2', function () {
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 })->name('welcome');
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');

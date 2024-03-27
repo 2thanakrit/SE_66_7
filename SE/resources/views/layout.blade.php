@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SE Group7</title>
+    <title>SE Group 7</title>
     <link rel="stylesheet" href="{{ asset('assets/css/layoutV2.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -13,14 +13,8 @@
 </head>
 
 <body>
-
     <div class="top">
         <nav class="nav">
-            {{-- @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif --}}
             <img src="../assets/images/KU copy.png" class="logo">
             <ul>
                 <li><a href="#">{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }} </a></li>
@@ -34,9 +28,9 @@
                         <h6>{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</h6>
                     </div>
                     <hr>
-                    {{-- เงื่อนไขปุ่มกด attendance และ form ปุ่มเข้างาน --}}
+                    {{-- ปุ่ม Attendance --}}
                     @if(!isset($hasCheckedInToday) || !$hasCheckedInToday)
-                    
+
                     <form action="{{ route('attendance.add') }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-primary">Record Attendance</button>
@@ -44,7 +38,7 @@
                     @else
                         <button class="btn btn-secondary" disabled>Attendance Recorded</button>
                     @endif
-                    {{-- ปุ่มกด logout --}}
+                    {{-- ส่วนของ logout  --}}
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         @method('DELETE')
@@ -54,7 +48,6 @@
                            <span>Logout</span>
                         </button>
                     </form>
-                    
                 </div>
             </div>
         </nav>
@@ -72,13 +65,13 @@
         <ul class="sidebar-nav">
             <li><a href="{{ route('calendar.index') }}">ปฎิทิน</a></li>
             <li><a href="{{ route('leaveMain') }}">ลงใบลา</a></li>
-            <li><a href="/leavehis">ประวัติการลาทั้งหมด</a></li>
             <li><a href="/leavetype">ข้อมูลการลา</a></li>
             <li><a href="{{ route('display.attendance') }}">ประวัติการเข้างาน</a></li>
             @adminRole
+            <li><a href="/leavehis">ประวัติการลาทั้งหมด</a></li>
             <li><a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a></li>
             <li><a href="/display/subcategory">จัดการหมวดวิชา</a></li>
-            <li><a href="/display/typeleave">ประเภทการลา</a></li>   
+            <li><a href="/display/typeleave">จัดการประเภทการลา</a></li> 
             @endadminRole
         </ul>
     @endteacherRole
@@ -88,12 +81,13 @@
             <li><a href="/display/leaveofabsences">Dashboard</a></li>
             <li><a href="{{ route('calendar.index') }}">ปฎิทิน</a></li>
             <li><a href="{{ route('leaveMain') }}">ลงใบลา</a></li>
-            <li><a href="/leavehis">ประวัติการลาทั้งหมด</a></li>
             <li><a href="/leavetype">ข้อมูลการลา</a></li>
             <li><a href="{{ route('display.attendance') }}">ประวัติการเข้างาน</a></li>
             @adminRole
+            <li><a href="/leavehis">ประวัติการลาทั้งหมด</a></li>
             <li><a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a></li>
             <li><a href="/display/subcategory">จัดการหมวดวิชา</a></li>   
+            <li><a href="/display/typeleave">จัดการประเภทการลา</a></li>
             @endadminRole
         </ul>
     @endleaderRole
@@ -103,12 +97,13 @@
             <li><a href="/display/leaveofabsences">Dashboard</a></li>
             <li><a href="{{ route('calendar.index') }}">ปฎิทิน</a></li>
             <li><a href="{{ route('leaveMain') }}">ลงใบลา</a></li>
-            <li><a href="/leavehis">ประวัติการลาทั้งหมด</a></li>
             <li><a href="/leavetype">ข้อมูลการลา</a></li>
             <li><a href="{{ route('display.attendance') }}">ประวัติการเข้างาน</a></li>
             @adminRole
+            <li><a href="/leavehis">ประวัติการลาทั้งหมด</a></li>
             <li><a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a></li>
-            <li><a href="/display/subcategory">จัดการหมวดวิชา</a></li>   
+            <li><a href="/display/subcategory">จัดการหมวดวิชา</a></li>  
+            <li><a href="/display/typeleave">จัดการประเภทการลา</a></li> 
             @endadminRole
 
         </ul>
@@ -119,15 +114,15 @@
         <li><a href="/display/leaveofabsences">Dashboard</a></li>
         <li><a href="{{ route('calendar.index') }}">ปฎิทิน</a></li>
         <li><a href="{{ route('leaveMain') }}">ลงใบลา</a></li>
-        <li><a href="/leavehis">ประวัติการลาทั้งหมด</a></li>
         <li><a href="/leavetype">ข้อมูลการลา</a></li>
         <li><a href="{{ route('display.attendance') }}">ประวัติการเข้างาน</a></li>
             @adminRole
+            <li><a href="/leavehis">ประวัติการลาทั้งหมด</a></li>
             <li><a href="{{ route('userMain') }}">จัดการผู้ใช้งาน</a></li>
             <li><a href="/display/subcategory">จัดการหมวดวิชา</a></li>
+            <li><a href="/display/typeleave">จัดการประเภทการลา</a></li>
             @endadminRole
         </ul>
-
     @enddirectorRole
     </div>
 
