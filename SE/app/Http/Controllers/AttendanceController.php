@@ -14,25 +14,32 @@ class AttendanceController extends Controller
     {
         $user = Auth::user();
         $all_atten = Atten::with('user')->where('u_id', $user->id)->get();
-
-        return view('Attendance', compact('all_atten'));
+        $hasCheckedInToday = Atten::where('u_id', $user->id)
+                                  ->whereDate('date', now()->format('Y-m-d'))
+                                  ->exists();
+    
+        
+        return view('Attendance', compact('all_atten', 'hasCheckedInToday'));
     }
 
 
     public function search(Request $request)
     {
         $search = $request->get('search');
-        $user = Auth::user();
-    
-        $all_atten = Atten::where('u_id', $user->id)
-            ->where(function ($query) use ($search) {
-                $query->where('date', 'like', '%' . $search . '%')
-                      ->orWhere('time', 'like', '%' . $search . '%');
-            })
-            ->get();
-    
-        // ส่งค่ากลับไปยัง view พร้อมกับตัวแปร all_atten และ keyword
-        return view('Attendance', compact('all_atten', 'search'));
+    $user = Auth::user();
+
+    $all_atten = Atten::where('u_id', $user->id)
+        ->where(function ($query) use ($search) {
+            $query->where('date', 'like', '%' . $search . '%')
+                  ->orWhere('time', 'like', '%' . $search . '%');
+        })
+        ->get();
+
+    $hasCheckedInToday = Atten::where('u_id', $user->id)
+                              ->whereDate('date', now()->format('Y-m-d'))
+                              ->exists();
+
+        return view('Attendance', compact('all_atten', 'search', 'hasCheckedInToday'));
     }
     
 
@@ -57,4 +64,6 @@ class AttendanceController extends Controller
 
         return back()->with('success', 'Attendance recorded successfully!');
     }
+
+    
 }
