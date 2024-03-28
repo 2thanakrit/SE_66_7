@@ -22,18 +22,4 @@ class Calendar extends Model
     protected $fillable = [
         'date', 'dateN_id', 'checkRest', 'detail',
     ];
-    public static function boot()
-    {
-        parent::boot();
-
-        static::saving(function ($model) {
-            // ตรวจสอบว่าชื่อวันที่ซ้ำกันหรือไม่
-            $duplicate = Calendar::where('date', $model->date)->exists();
-
-            // หากมีชื่อวันที่ซ้ำกันในฐานข้อมูล ให้ยกเลิกการบันทึก
-            if ($duplicate) {
-                return false;
-            }
-        });
-    }
 }
