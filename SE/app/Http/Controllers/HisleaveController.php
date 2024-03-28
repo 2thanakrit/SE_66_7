@@ -20,16 +20,29 @@ class HisleaveController extends Controller
             $leavebalances = leavebalances::where('u_id',auth()->user()->id)->with('typeleave')->orderBy('typeL_id')->get();
             $users = user::where('id',auth()->user()->id)->with('subCategory')->get();
             $eventdate = eventdate::with('eventdate')->get(); 
-
+            $show = leavebalances::where('u_id',auth()->user()->id)->select(DB::raw('SUM(remainingLeave) as totalremaining'))->groupBy('remainingLeave')->get();          
+            $data = leavebalances::where('u_id', auth()->user()->id)->with('typeleave')->select('typeL_id', DB::raw('SUM(usedLeave) as totalUsedLeave'))->groupBy('typeL_id')->get();
             $number3 = leavebalances::where('u_id',auth()->user()->id)->where('typeL_id',3)->with('typeleave')->get();
             $number4 = leavebalances::where('u_id',auth()->user()->id)->where('typeL_id',4)->with('typeleave')->get();
             $number5 = leavebalances::where('u_id',auth()->user()->id)->where('typeL_id',5)->with('typeleave')->get();
             $typeL3 = leaveofabsences::where('u_id',auth()->user()->id)->where('typeL_id',3)->where('status', 'อนุมัติ')->get();
             $typeL4 = leaveofabsences::where('u_id',auth()->user()->id)->where('typeL_id',4)->where('status', 'อนุมัติ')->get();
             $typeL5 = leaveofabsences::where('u_id',auth()->user()->id)->where('typeL_id',5)->where('status', 'อนุมัติ')->get();
-            $total3 = 0; $total4 = 0; $total5 = 0;
+            $total3 = 0; $total4 = 0; $total5 = 0; 
             $totalday3 = 0; $totalday4 = 0; $totalday5 = 0;
-            $num3 = 0; $num4 = 0; $num5 = 0;
+            $num3 = 0; $num4 = 0; $num5 = 0; $n1 = 0;
+            
+            // showgraph
+            $array[] = ['การลา', 'จำนวนวันลา'];
+            foreach($data as $key => $value)
+            {    
+                $array[++$key] = [strval($value->typeleave->name), intval($value->totalUsedLeave)];
+            }
+            foreach($show as $sh){
+                $n1 += $sh->totalremaining;
+            }
+            $array[] = ['จำนวนวันลาคงเหลือทั้งหมด',intval($n1)];                      
+            
             //ลาป่วย
             foreach($number3 as $n3){
                 $num3 = $n3->typeleave->number;
@@ -126,7 +139,8 @@ class HisleaveController extends Controller
                                             'typeL3','typeL4','typeL5',
                                             'type3','total3','totalday3',
                                             'type4','total4','totalday4',
-                                            'type5','total5','totalday5'));
+                                            'type5','total5','totalday5')
+                                            )->with('typeL',json_encode($array));
         }
     
     public function showleavehis()
