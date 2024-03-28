@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Acknowledge;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Leaveofabsence;
 
 class AcknowledgeController extends Controller
 {
@@ -95,7 +98,7 @@ class AcknowledgeController extends Controller
         })
         ->orWhereHas('typeLeave', function ($query) use ($search) {
             $query->where('name', 'like', "%$search%")->where('status','=','อนุมัติ');
-        })->get();
+        })->paginate(7);
         return view('acknowledge.index', compact('Acknowledge'));
     }
 
@@ -114,5 +117,8 @@ class AcknowledgeController extends Controller
             ->paginate(7); 
 
         return view('acknowledge.index', compact('Acknowledge'));
+    }
+    public function boot(): void{
+        Paginator::useBootstrap();
     }
 }
