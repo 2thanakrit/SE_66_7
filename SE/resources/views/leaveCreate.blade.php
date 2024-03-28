@@ -23,9 +23,24 @@
                                 <select class="form-select mt-2" name="typeL_id" aria-label="Default select example">
                                     <option selected></option>
                                     @foreach($typeLeaves as $typeLeave)
-                                    <option value="{{ $typeLeave->id }}">{{ $typeLeave->name }}</option>
+                                        @if($typeLeave->name == 'ลาป่วย')
+                                            <option value="{{ $typeLeave->id }}">{{ $typeLeave->name }}</option>
+                                        @else
+                                            @php
+                                                $remainingLeave = DB::table('leavebalances')
+                                                    ->where('u_id', Auth::id())
+                                                    ->where('typeL_id', $typeLeave->id)
+                                                    ->value('remainingLeave');
+                                            @endphp
+                                            @if($remainingLeave > 0)
+                                                <option value="{{ $typeLeave->id }}">{{ $typeLeave->name }}</option>
+                                            @endif
+                                        @endif
                                     @endforeach
-                                    </select>
+                                </select>
+
+
+
                                 @error('typeL_id') <span class="text-danger">Please select type</span> @enderror
                             </div>
                             <div class="mb-3 mt-3">
