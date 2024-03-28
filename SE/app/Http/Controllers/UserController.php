@@ -19,7 +19,7 @@ use Illuminate\Validation\Rule;
 class UserController extends Controller
 {
     function index(){
-        $users = User::orderBy('id', 'desc')->get();
+        $users = User::orderBy('id', 'desc')->paginate(10);;
         return view('userMain',compact('users'));
     }
 
@@ -68,7 +68,9 @@ function searchUser(Request $request)
         $query->where('name', 'like', '%' . $search . '%');
     })->orWhereHas('subcategory', function ($query) use ($search) {
         $query->where('name', 'like', '%' . $search . '%');
-    })->paginate(5);
+    })
+    ->orderBy('id', 'desc')
+    ->paginate(10);
 
     return view('userMain', compact('users'));
 }

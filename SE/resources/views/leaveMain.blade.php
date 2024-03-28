@@ -49,9 +49,14 @@
                                 </table>
                             </div>
                         </div>
+                        
                     </div>
+                    
                 </div>
+                
             </div>
+            {{ $LeaveOfAbsence->links() }}
         </div>
+        
     </div>
 @endsection

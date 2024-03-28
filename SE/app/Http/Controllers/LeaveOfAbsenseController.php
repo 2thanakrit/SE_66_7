@@ -24,7 +24,7 @@ class LeaveOfAbsenseController extends Controller
         $LeaveOfAbsence = leaveOfAbsence::where('u_id', $users->id)
             ->orderBy('id', 'desc')
             ->with('user', 'typeLeave', 'approver')
-            ->get();
+            ->paginate(10);
         // $countDate = $this->getTotalLeaveDays();
         return view('leaveMain', compact('LeaveOfAbsence', 'users'));
     }
@@ -149,7 +149,9 @@ class LeaveOfAbsenseController extends Controller
         ->orWhere('status', 'like', '%' . $search . '%')->where('u_id', auth()->user()->id)
         ->orWhereHas('typeLeave', function ($query) use ($search) {
                      $query->where('name', 'like', '%' . $search . '%')
-                           ->where('u_id', auth()->user()->id);})->get();
+                           ->where('u_id', auth()->user()->id);})
+                           ->orderBy('id', 'desc')
+                           ->paginate(10);
         return view('leaveMain', compact('LeaveOfAbsence', 'typeLeaves'));
     
     }
