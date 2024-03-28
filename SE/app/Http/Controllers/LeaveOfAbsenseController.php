@@ -38,6 +38,11 @@ class LeaveOfAbsenseController extends Controller
     function detail($id)
     {
         $detail = leaveOfAbsence::find($id);
+
+        if ($detail->u_id !== Auth::id()) {
+            abort(403); // แสดงหน้า 403 Forbidden (ไม่อนุญาต)
+        }
+
         return view('leaveDetail', compact('detail'));
     }
 
