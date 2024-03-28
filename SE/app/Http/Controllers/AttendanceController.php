@@ -28,20 +28,24 @@ class AttendanceController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
-    $user = Auth::user();
+        $user = Auth::user();
 
-    $all_atten = Atten::where('u_id', $user->id)
-        ->where(function ($query) use ($search) {
-            $query->where('date', 'like', '%' . $search . '%')
-                  ->orWhere('time', 'like', '%' . $search . '%');
-        })
-        ->get();
+        $all_atten = Atten::where('u_id', $user->id)
+            ->where(function ($query) use ($search) {
+                $query->where('date', 'like', '%' . $search . '%')
+                    ->orWhere('time', 'like', '%' . $search . '%');
+            })
+            ->orWhereHas('user', function ($query) use ($search) {
+                $query->where('firstname', 'like', "%$search%")
+                    ->orWhere('lastname', 'like', "%$search%");
+            })
+            ->get();
 
-    $hasCheckedInToday = Atten::where('u_id', $user->id)
-                              ->whereDate('date', now()->format('Y-m-d'))
-                              ->exists();
+        $hasCheckedInToday = Atten::where('u_id', $user->id)
+                                ->whereDate('date', now()->format('Y-m-d'))
+                                ->exists();
 
-        return view('Attendance', compact('all_atten', 'search', 'hasCheckedInToday'));
+            return view('Attendance', compact('all_atten', 'search', 'hasCheckedInToday'));
     }
     
 

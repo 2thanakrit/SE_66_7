@@ -19,14 +19,25 @@
         <div class="card">
             <div class="card-header">Attendance</div>
             <div class="card-body">
-                <form action="{{ url('/Attendance/search') }}" method="GET">
-                    <div class="mb-3">
-                        <label for="search" class="form-label">Search by name, date, or time:</label>
-                        <input type="text" name="search" class="form-control" id="keyword"
-                            placeholder="Enter name, date, or time" value="{{ $search ?? '' }}">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </form>
+            <form action="{{ url('/Attendance/search') }}" method="GET" onsubmit="return validateForm()">
+                <div class="mb-3">
+                    <label for="search" class="form-label">Search by name, date, or time:</label>
+                    <input type="text" name="search" class="form-control" id="keyword" placeholder="Enter name, date, or time" value="{{ $search ?? '' }}">
+                </div>
+                <button type="submit" id="searchat" class="btn btn-primary">Search</button>
+            </form>
+
+            <script>
+                function validateForm() {
+                    var keyword = document.getElementById("keyword").value;
+                    if (keyword.trim() == "") {
+                        alert("Please enter a search keyword.");
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
+
 
                 <div class="mb-3">
                     @if (isset($all_atten))

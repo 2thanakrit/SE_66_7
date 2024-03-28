@@ -58,7 +58,7 @@
                 </div>               
                 @endif
                                 
-                <div class="col-md-3 ">
+                <div class="col-md-3 text-right"> <!-- เพิ่ม class "text-right" เพื่อช่วยให้ฟอร์มค้นหาอยู่ด้านขวา -->
                     <div class="form-group">
                         <form method="get" action="/searchapprover" onsubmit="return validateForm()">
                             <div class="input-group">
