@@ -45,31 +45,41 @@ class CrudController extends Controller
         }
     }
     function detail($id)
-    {
-        $detail = leaveOfAbsence::find($id);
-        return view('detailLeave', compact('detail'));
-    }
-    public function search(Request $request)
-    {
-        $search = $request->get('search');
-        $all_leaveofabsences  = Leaveofabsence::where(function ($query) use ($search) {
-                $query->where('firstDate', 'like', "%$search%")                  
-                    ->orWhere('endDate', 'like', "%$search%")                  
-                    ->orWhereHas('user', function ($query) use ($search) {
-                        $query->where('firstname', 'like', "%$search%")
-                            ->orWhere('lastname', 'like', "%$search%");
-                    })
-                    ->orWhereHas('userapprover', function ($query) use ($search){
-                        $query->where('firstname', 'like', "%$search%")
-                            ->orWhere('lastname', 'like', "%$search%");
-                    })
-                    ->orWhereHas('typeLeave', function ($query) use ($search) {
-                        $query->where('name', 'like', "%$search%");
-                    });
-        })->paginate(7);
+{
+    $detail = Leaveofabsence::find($id);
+    return view('detailLeave', compact('detail'));
+}
 
-        return view('all-leaveofabsences', compact('all_leaveofabsences'));
-    }
+public function search(Request $request)
+{
+    $search = $request->get('search');
+    $userId = auth()->user()->id;
+
+    $all_leaveofabsences = Leaveofabsence::where('u_approver', $userId)
+        ->whereHas('userapprover', function ($query) use ($userId) {
+            $query->where('u_approver', $userId);
+        })
+        ->where(function ($query) use ($search) {
+            $query->where('firstDate', 'like', "%$search%")
+                ->orWhere('endDate', 'like', "%$search%")
+                ->orWhereHas('user', function ($query) use ($search) {
+                    $query->where('firstname', 'like', "%$search%")
+                        ->orWhere('lastname', 'like', "%$search%");
+                })
+                ->orWhereHas('typeLeave', function ($query) use ($search) {
+                    $query->where('name', 'like', "%$search%");
+                });
+        })
+        ->paginate(7);
+
+    return view('all-leaveofabsences', compact('all_leaveofabsences'));
+}
+
+
+
+
+
+
 
     public function boot(): void{
         Paginator::useBootstrap();
