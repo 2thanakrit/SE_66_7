@@ -15,24 +15,33 @@
 <body>
     <div class="top">
         <nav class="nav">
-            <img src="../assets/images/KU copy.png" class="logo">
+            <img src="/assets/images/KU copy.png" class="logo">
             <ul>
                 <li><a href="#">{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }} </a></li>
             </ul>
-            <img src="../assets/images/Cena.png" class="user-pic" onclick = "toggleMenu()">
+            <img src="/assets/images/user.png" class="user-pic" onclick = "toggleMenu()">
 
             <div class="sub-menu-wrap" id = "subMenu">
                 <div class="sub-menu">
                     <div class="user-info">
-                        <img src="../assets/images/Cena.png">
+                        <img src="/assets/images/user.png">
                         <h6>{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</h6>
                     </div>
                     <hr>
-                    
+                    {{-- ปุ่ม Attendance --}}
+                    @if(!isset($hasCheckedInToday) || !$hasCheckedInToday)
+
+                    <form action="{{ route('attendance.add') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Record Attendance</button>
+                    </form>
+                    @else
+                        <button class="btn btn-secondary" disabled>Attendance Recorded</button>
+                    @endif
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <img src = "../assets/images/logout.png">
+                        <img src = "/assets/images/logout.png">
                         <button type="submit" class="btn btn-danger">
                             
                            <span>Logout</span>
