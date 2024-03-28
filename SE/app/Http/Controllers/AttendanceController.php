@@ -6,6 +6,8 @@ use App\Models\Atten;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\LeaveOfAbsence; 
+use Carbon\Carbon; 
 
 class AttendanceController extends Controller
 {
@@ -48,14 +50,28 @@ class AttendanceController extends Controller
     {
         $user = Auth::user();
 
-        // ตรวจสอบว่าผู้ใช้มีการลงเวลาเข้างานในวันนี้หรือยัง
+        
         $todayAttendance = Atten::where('u_id', $user->id)->whereDate('date', now()->format('Y-m-d'))->first();
 
-        // ถ้ามีการลงเวลาในวันนี้แล้ว, ไม่อนุญาตให้บันทึก
+       
         if ($todayAttendance) {
             return back()->with('error', 'You have already recorded your attendance today.');
         }
 
+        $date = now()->format('Y-m-d');
+
+        $leaveRecord = LeaveOfAbsence::where('u_id', $user->id)
+                                      ->whereDate('firstdate', '<=', $date)
+                                      ->whereDate('enddate', '>=', $date)
+                                      ->where('status', 'กำลังดำเนินงาน') 
+                                      ->first();
+    
+       
+        if ($leaveRecord) {
+            $leaveRecord->status = 'ยกเลิก'; 
+            $leaveRecord->save();
+        }
+        
         $attendance = new Atten;
         $attendance->u_id = $user->id;
         $attendance->date = now()->format('Y-m-d');
@@ -65,5 +81,6 @@ class AttendanceController extends Controller
         return back()->with('success', 'Attendance recorded successfully!');
     }
 
+    
     
 }
