@@ -19,12 +19,12 @@
             <ul>
                 <li><a href="#">{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }} </a></li>
             </ul>
-            <img src="../assets/images/Cena.png" class="user-pic" onclick = "toggleMenu()">
+            <img src="../assets/images/user.png" class="user-pic" onclick = "toggleMenu()">
 
             <div class="sub-menu-wrap" id = "subMenu">
                 <div class="sub-menu">
                     <div class="user-info">
-                        <img src="../assets/images/Cena.png">
+                        <img src="../assets/images/user.png">
                         <h6>{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</h6>
                     </div>
                     <hr>
